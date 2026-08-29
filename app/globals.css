@@ -1192,13 +1192,20 @@ h3 {
   position: relative;
   display: grid;
   place-items: center;
+  width: 100%;
 }
 
+/* aspect-ratio (not a fixed height) is what keeps the wheel a circle once the
+   width is capped on a narrow screen. The canvas backing store is sized to
+   match in JS, so it stays sharp at any width. */
 .wheel-canvas {
+  display: block;
+  width: min(320px, 100%);
+  height: auto;
+  aspect-ratio: 1 / 1;
   border-radius: 50%;
   box-shadow: 0 0 0 8px rgba(255, 255, 255, 0.07), 0 0 60px -10px rgba(255, 77, 141, 0.8);
   transition: transform 4.6s cubic-bezier(0.12, 0.72, 0.12, 1);
-  max-width: 100%;
 }
 
 .wheel-pin {
